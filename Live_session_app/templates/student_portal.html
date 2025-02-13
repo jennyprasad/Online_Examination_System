@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Portal</title>
+</head>
+<body>
+    <h1>Welcome to the Student Portal</h1>
+    <p>Logged in as: {{ email }}</p>
+
+    <ul>
+        <li><a href="{{ url_for('exam_routes.get_student', student_id=student_id) }}">View Profile</a></li>
+        <li><a href="{{ url_for('view_examinations', student_id=student_id) }}">View Examinations</a></li>
+        <li><a href="{{ url_for('view_results', student_id=student_id) }}">View Results</a></li>
+    </ul>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

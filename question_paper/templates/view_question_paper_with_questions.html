@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ question_paper.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right,rgb(0, 162, 255),rgb(0, 191, 255)); /* Gradient from light blue to dark blue */
+            color: white;
+            padding: 20px 0; /* More padding for a spacious look */
+            text-align: center;
+            font-family: 'Arial', sans-serif; /* Choose a clean font */
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            border-bottom: 4px solid #0056b3; /* A border at the bottom to add structure */
+            border-radius: 0 0 10px 10px; /* Rounded corners for the bottom */
+            text-transform: uppercase; /* All caps for title styling */
+        }
+        
+        header h1 {
+            font-size: 36px; /* Larger font size for emphasis */
+            letter-spacing: 2px; /* Space between letters for better readability */
+            margin: 0; /* Remove any default margin */
+        }
+        
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .question-details {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .question-details h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .question p {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .options {
+            margin-left: 20px;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .options li {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .option-label {
+            font-weight: bold;
+            color:  #007bff;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+        }
+        .button-link {
+            display: inline-block;
+            background-color: #3498db; /* Blue background */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .button-link:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+        
+        .button-link:active {
+            background-color: #1c5980; /* Even darker blue when clicked */
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ question_paper.title }}</h1>
+    </header>
+    
+    <div class="container">
+        <div class="question-details">
+            <p><strong>Metadata:</strong> {{ question_paper.metadata or 'N/A' }}</p>
+            <p><strong>Min Questions to Attempt:</strong> {{ question_paper.min_req_questions or 'N/A' }}</p>
+            <p><strong>Max Questions to Attempt:</strong> {{ question_paper.max_attemptable_questions or 'N/A' }}</p>
+            <p><strong>Max Score:</strong> {{ question_paper.max_score or 'N/A' }}</p>
+        </div>
+
+        <h2>Questions</h2>
+        <div class="questions-list">
+            {% for question in question_paper.questions %}
+                <div class="question">
+                    <!-- Displaying the question number -->
+                    <p><strong>Question {{ loop.index }}:</strong> {{ question.text }}</p>
+                    <ul class="options">
+                        {% for option in question.options %}
+                            <li>
+                                <span class="option-label">{{ option.label }}:</span> {{ option.text }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Link to View Question Paper -->
+        <a href="{{ url_for('question_routes.get_all_question_papers') }}" class="button-link">View All Question Papers</a>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Online Exam Platform</p>
+    </footer>
+</body>
+</html>

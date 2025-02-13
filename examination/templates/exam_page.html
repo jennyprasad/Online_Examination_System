@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ exam_data.title }} - Exam</title>
+</head>
+<body>
+    <h1>{{ exam_data.title }}</h1>
+    <form action="{{ url_for('submit_exam') }}" method="POST">
+        <div>
+            <h2>{{ exam_data.meta_data }}</h2>
+        </div>
+
+        {% for question in exam_data.questions %}
+        <div>
+            <h3>{{ question.text }}</h3>
+            {% for option in question.options %}
+            <label>
+                <input type="radio" name="{{ question.id }}" value="{{ option.label }}">
+                {{ option.text }}
+            </label><br>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit">Submit Exam</button>
+    </form>
+</body>
+</html>

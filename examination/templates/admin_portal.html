@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Portal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color:#e6f2ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .user-info {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 15px;
+        }
+
+        .menu-item a {
+            display: block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item a:hover {
+            background-color: #2980b9;
+        }
+
+        .logout {
+            display: block;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Admin Portal</h1>
+        
+        <div class="user-info">
+            <p>Logged in as: {{ email }}</p>
+        </div>
+
+        <ul class="menu">
+            <!-- View All students -->
+            <li class="menu-item">
+                <a href="{{ url_for('exam_routes.get_all_students') }}">View All Students</a>
+            </li>
+
+            <!-- View All Question Papers -->
+            <li class="menu-item">
+                <a href="http://127.0.0.1:5010/question_paper">View All Question Papers</a>
+            </li>
+
+            <!-- View All Examinations -->
+            <li class="menu-item">
+                <a href="http://127.0.0.1:5011/examination">View All Examinations</a>
+            </li>
+
+            <!-- View All Live sessions -->
+            <li class="menu-item">
+                <a href="http://127.0.0.1:5012/live_sessions">View All Live Sessions</a>
+            </li>
+        </ul>
+
+        <!-- Logout Link -->
+        <a href="http://127.0.0.1:5009/logout" class="logout">Logout</a>
+    </div>
+</body>
+</html>

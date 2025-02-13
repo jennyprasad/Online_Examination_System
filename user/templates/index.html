@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Online Exam System</title>
+    <style>
+        /* Updated body styling for left-aligned layout */
+        body {
+            background-image: url('https://etutor.co/blog/wp-content/uploads/2023/03/online-exam-software.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        /* Container styling with left alignment */
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            margin-left: 5%; /* Added margin to position container from the left */
+        }
+        
+        /* Header and title styling */
+        h1 {
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        p {
+            color: #34495e;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        /* Button styling with light blue colors */
+        .login-btn, .signup-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #87CEFA; /* Light Sky Blue */
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .login-btn:hover, .signup-btn:hover {
+            background-color: #6495ED; /* Cornflower Blue */
+            transform: scale(1.05);
+        }
+        
+        .login-btn:active, .signup-btn:active {
+            background-color: #4169E1; /* Royal Blue */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 40px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .login-btn, .signup-btn {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Online Exam System</h1>
+        <p>Take your exams online with ease. Please log in or sign up to continue.</p>
+        <a href="{{ url_for('exam_routes.login') }}" class="login-btn">Login</a>
+        <a href="{{ url_for('exam_routes.signup') }}" class="signup-btn">Sign Up</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Examinations</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+            transition: background-color 0.3s ease;
+        }
+
+        .no-students {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Examinations</h1>
+    
+    {% if exams %}
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Exam ID</th>
+                    <th>Question Paper ID</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration (Minutes)</th>
+                    <th>Examination Conductor User ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exams %}
+                    <tr>
+                        <td>{{ exam.exam_id }}</td>
+                        <td>{{ exam.question_paper_id }}</td>
+                        <td>{{ exam.start_time }}</td>
+                        <td>{{ exam.end_time }}</td>
+                        <td>{{ exam.duration }}</td>
+                        <td>{{ exam.examination_conductor_user_id }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="no-students">
+            <p>No examinations found.</p>
+        </div>
+    {% endif %}
+</body>
+</html>

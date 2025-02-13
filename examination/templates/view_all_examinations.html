@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Examinations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+            transition: background-color 0.3s ease;
+        }
+
+        td {
+            color: #34495e;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #2c3e50;
+                margin-right: 10px;
+            }
+
+            thead {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>All Examinations</h1>
+    
+    {% if examinations %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Exam ID</th>
+                    <th>Question Paper ID</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Duration (Minutes)</th>
+                    <th>Examination Conductor User ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for examination in examinations %}
+                    <tr>
+                        <td data-label="Exam ID">{{ examination.exam_id }}</td>
+                        <td data-label="Question Paper ID">{{ examination.question_paper_id }}</td>
+                        <td data-label="Start Time">{{ examination.start_time }}</td>
+                        <td data-label="End Time">{{ examination.end_time }}</td>
+                        <td data-label="Duration">{{ examination.duration }}</td>
+                        <td data-label="Examination Conductor User ID">{{ examination.examination_conductor_user_id }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No examinations found.</p>
+    {% endif %}
+</body>
+</html>

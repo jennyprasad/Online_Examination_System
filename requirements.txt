@@ -1,0 +1,15 @@
+alembic==1.13.2   #Database migration tool for SQLAlchemy, enabling schema version control.
+blinker==1.8.2
+click==8.1.7
+Flask==3.0.3  #Lightweight WSGI web application framework for Python.
+Flask-Migrate==4.0.7 #Extension for Flask that integrates Alembic for database migrations.
+Flask-SQLAlchemy==3.1.1 #SQLAlchemy integration for Flask applications, simplifying ORM usage.
+itsdangerous==2.2.0
+Jinja2==3.1.4 #Templating engine for Python, widely used with Flask for rendering HTML.
+Mako==1.3.5
+MarkupSafe==2.1.5
+PyMySQL==1.1.1 #Pure Python library for connecting to MySQL databases.
+python-dotenv==1.0.1
+SQLAlchemy==2.0.32  #Powerful SQL toolkit and Object Relational Mapper (ORM) for Python.
+typing_extensions==4.12.2
+Werkzeug==3.0.4  #Comprehensive WSGI utility library powering Flask’s request and response handling.

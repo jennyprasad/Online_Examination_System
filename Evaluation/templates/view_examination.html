@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Examinations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+            transition: background-color 0.3s ease;
+        }
+
+        td {
+            color: #34495e;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Error Message Styling */
+        .error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Button Container Styling */
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #3498db;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #2c3e50;
+                margin-right: 10px;
+            }
+
+            thead {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Examinations</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if examination %}
+    <table>
+        <thead>
+            <tr>
+                <th>Exam ID</th>
+                <th>Question Paper ID</th>
+                <th>Start Time</th>
+                <th>Ending Time</th>
+                <th>Duration (Minutes)</th>
+                <th>Examination Conductor User ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in examination %}
+            <tr>
+                <td>{{ exam['exam_id'] }}</td>
+                <td>{{ exam['question_paper_id'] }}</td>
+                <td>{{ exam['start_time'] }}</td>
+                <td>{{ exam['end_time'] }}</td>
+                <td>{{ exam['duration'] }}</td>
+                <td>
+                    {% if exam['examination_conductor_user_id'] %}
+                        {{ exam['examination_conductor_user_id'] }}
+                    {% else %}
+                        Not Assigned
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No examinations available at the moment.</p>
+    {% endif %}
+
+    <div class="button-container">
+        <a href="http://127.0.0.1:5009/student_portal" class="btn">Back to Student Portal</a>
+    </div>
+</body>
+</html>

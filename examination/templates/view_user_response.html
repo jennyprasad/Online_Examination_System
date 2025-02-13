@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Response</title>
+</head>
+<body>
+    <h1>User Response Details</h1>
+    {% if response_data %}
+        <h2>Question: {{ response_data.question.text }}</h2>
+        <ul>
+            {% for option in response_data.options %}
+                <li>{{ option.label }}: {{ option.text }}</li>
+            {% endfor %}
+        </ul>
+        <p>Selected Option: {{ response_data.selected_option_label }}</p>
+    {% else %}
+        <p>No response found.</p>
+    {% endif %}
+</body>
+</html>

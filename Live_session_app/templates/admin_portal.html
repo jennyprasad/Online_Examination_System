@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Portal</title>
+</head>
+<body>
+    <h1>Welcome to the Admin Portal</h1>
+    <p>Logged in as: {{ email }}</p>
+
+    <ul>
+         <!-- View All students -->
+        <li><a href="{{ url_for('exam_routes.get_all_students') }}">View All Students</a></li>
+
+        <!-- View All Question Papers -->
+        <li><a href="{{ url_for('view_all_question_papers') }}">View All Question Papers</a></li>
+
+        <!-- View All Examinations -->
+        <li><a href="{{ url_for('view_all_examinations') }}">View All Examinations</a></li>
+
+        <!-- View All Live sessions -->
+        <li><a href="{{ url_for('examview_all_live_sessions') }}">View All Live Sessions</a></li>
+    </ul>
+
+    <!-- Logout Link -->
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

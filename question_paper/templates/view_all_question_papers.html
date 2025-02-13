@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Question Papers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background-color: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f2ff;
+            transition: background-color 0.3s ease;
+        }
+
+        td {
+            color: #34495e;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+       
+        .view-btn {
+            display: inline-block;
+            background-color: #2ecc71; /* Green background */
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .view-btn:hover {
+            background-color: #27ae60; /* Darker green on hover */
+        }
+        
+        
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #2c3e50;
+                margin-right: 10px;
+            }
+
+            thead {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>All Question Papers</h1>
+    
+    {% if question_papers %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Question Paper ID</th>
+                    <th>Title</th>
+                    <th>Meta Data</th>
+                    <th>Min Required Questions</th>
+                    <th>Max Questions</th>
+                    <th>Max Score</th>
+                    <th>Setter ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paper in question_papers %}
+                    <tr>
+                        <td data-label="Question Paper ID">{{ paper.question_paper_id }}</td>
+                        <td data-label="Title">{{ paper.question_paper_title }}</td>
+                        <td data-label="Meta Data">{{ paper.question_paper_meta_data }}</td>
+                        <td data-label="Min Required Questions">{{ paper.min_req_number_of_questions_to_be_attempted }}</td>
+                        <td data-label="Max Questions">{{ paper.max_number_of_questions_that_can_be_attempted }}</td>
+                        <td data-label="Max Score">{{ paper.max_score }}</td>
+                        <td data-label="Setter ID">{{ paper.question_paper_setter_id }}</td>
+                        <td>
+                            <!-- View Question Paper Button -->
+                            <a href="{{ url_for('question_routes.get_question_paper_with_questions', question_paper_id=paper.question_paper_id) }}" class="view-btn">View Question Paper</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">No question papers found.</p>
+    {% endif %}
+</body>
+</html>

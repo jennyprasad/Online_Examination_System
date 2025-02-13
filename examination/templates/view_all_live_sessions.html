@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Live Sessions</title>
+</head>
+<body>
+    <h1>All Live Sessions</h1>
+    
+    {% if live_sessions %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Session ID</th>
+                    <th>Exam ID</th>
+                    <th>Conductor User ID</th>
+                    <th>Session Code</th>
+                    <th>Session Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in live_sessions %}
+                    <tr>
+                        <td>{{ session.session_id }}</td>
+                        <td>{{ session.exam_id }}</td>
+                        <td>{{ session.conductor_user_id }}</td>
+                        <td>{{ session.session_code }}</td>
+                        <td>{{ session.session_status }}</td>
+                        <td>
+                            <a href="{{ url_for('exam_routes.admin_portal') }}">View Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No live sessions found.</p>
+    {% endif %}
+</body>
+</html>
